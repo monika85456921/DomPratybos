@@ -55,7 +55,7 @@ for (let i = 0; i < picsMasyvas.length; i++) {
   });
 }
 
-
+////
 
 
 

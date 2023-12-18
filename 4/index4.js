@@ -57,7 +57,7 @@ const visiButtons = document.querySelectorAll(".btn");
 // console.log(visiButtons);
 visiButtons.forEach((e) => {
   const rasti = e.getAttribute("id");
-  // console.log(e);
+  console.log(e);
   e.addEventListener("click", () => {
     // console.log(rasti);
     // console.log("click");

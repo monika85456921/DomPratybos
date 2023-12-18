@@ -1,6 +1,11 @@
 const galerija = document.querySelector("#galerija");
 galerija.style.display = "grid";
 galerija.style.gridTemplateColumns = "repeat(3, 1fr)";
+//tikrinam ar yra local storage su favorites jei ne yra sukuriamas tuscias masyvas
+const arYraFavorites = localStorage.getItem("favorites");
+const favorites = arYraFavorites === null ? [] : JSON.parse(arYraFavorites);
+console.log(favorites);
+
 const picsMasyvas = [
   "https://media.wired.com/photos/593261cab8eb31692072f129/4:3/w_929,h_697,c_limit/85120553.jpg",
   "https://www.shutterstock.com/image-vector/okay-black-vector-icon-on-260nw-749714290.jpg",
@@ -16,7 +21,6 @@ const picsMasyvas = [
   "https://randomwordgenerator.com/img/picture-generator/57e1d14a4e55af14f1dc8460962e33791c3ad6e04e5074417c2e7dd19349c5_640.jpg",
 ];
 
-
 const random = (array) => {
   const randomPic = Math.floor(Math.random() * array.length);
   return array[randomPic];
@@ -31,37 +35,74 @@ for (let i = 0; i < picsMasyvas.length; i++) {
   // images
   const imgEl = document.createElement("img");
   imgEl.setAttribute("src", picsMasyvas[i]);
-  imgEl.style.height = "200px";
-  imgEl.style.width = "200px";
+  imgEl.style.height = "250px";
+  imgEl.style.width = "250px";
   galleryItem.appendChild(imgEl);
 
   // mygtukas ir jo style
   const buttonEl = document.createElement("button");
+  buttonEl.className = "btn";
+  buttonEl.id = "btn" + i;
   buttonEl.innerHTML = '<i class="fa-solid fa-heart"></i>';
   buttonEl.style.position = "absolute";
   buttonEl.style.top = "0";
   buttonEl.style.left = "0";
-  buttonEl.style.border = "none"
+  buttonEl.style.border = "none";
+  buttonEl.style.height = "25px";
+
   galleryItem.appendChild(buttonEl);
 
-  // Event listener'is mygtukui
-  buttonEl.addEventListener("click", (e) => {
-    e.preventDefault();
-    if (buttonEl.style.color === "red") {
-      buttonEl.style.color = "black";
-    } else {
-      buttonEl.style.color = "red";
-    }
-  });
 }
+const visiButtons = document.querySelectorAll(".btn");
+// console.log(visiButtons);
+visiButtons.forEach((e) => {
+  const rasti = e.getAttribute("id");
+  // console.log(e);
+  e.addEventListener("click", () => {
+    // console.log(rasti);
+    // console.log("click");
+
+    if (e.style.color === "red") {
+      e.style.color = "black";
+      const arYra = favorites.includes(rasti);
+      if (arYra) {
+        const indexas = favorites.indexOf(rasti);
+        if (indexas >= 0) {
+          favorites.splice(indexas, 1);
+         
+        }
+      }
+    } else {
+      e.style.color = "red";
+      favorites.push(rasti);
+      console.log(favorites);
+     
+    }
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  });
+  if(favorites.includes(rasti)){
+      e.style.color = "red"
+      
+    }
+});
+
+
+
+
+
+
+
+
+
+// const favsToLocalStorage = ()=>{
+//   if(visiButtons ==="red"){
+//     localStorage.setItem("favorites", JSON.stringify("favorites"))
+//   } else {
+
+//   }
+// }
 
 ////
-
-
-
-
-
-
 
 // const random = (array) => {
 //   const randomPic = Math.floor(Math.random() * array.length);
@@ -82,9 +123,8 @@ for (let i = 0; i < picsMasyvas.length; i++) {
 //   imgEl.style.width = "250px";
 //   galerija.style.position = "relative";
 //   buttonEl.style.position = "absolute";
-//   buttonEl.style.top = "0"; 
+//   buttonEl.style.top = "0";
 //   buttonEl.style.left = "0";
-
 
 //   //event listener'is mygtukui
 //   buttonEl.addEventListener("click",(e) => {

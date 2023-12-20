@@ -45,8 +45,8 @@ editButton.addEventListener('click', (event)=>{
     const name = document.querySelector("#name").value
     const quantity = document.querySelector("#quantity").value
 
-    const updated = cartList.map(product =>{
-        if (product.id ===id){
+    const updated = cartList.map(el =>{
+        if (el.id ===id){
             return {id,name,quantity}
         }
         return product
@@ -66,4 +66,18 @@ localStorage.setItem("cartList", JSON.stringify(cartList))
 
 
 
+
+//     function updateTable(products) {
+//         // Clear the table
+//         table.innerHTML = '<th>Product Code</th><th>Product Name</th><th>Product quantity</th>';
+
+//         // Populate the table with the updated products
+//         products.forEach(product => {
+//             const row = table.insertRow();
+//             row.insertCell(0).innerText = product.id;
+//             row.insertCell(1).innerText = product.name;
+//             row.insertCell(2).innerText = product.quantity;
+//         });
+//     }
+// });
 

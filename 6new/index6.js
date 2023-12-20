@@ -43,12 +43,12 @@ button2.addEventListener("click", (event) => {
 });
 
 ////2skaidre
-//1
+
 const inputDivas = document.createElement("div");
 mainDiv.append(inputDivas);
 inputDivas.setAttribute("class", "inputs");
 
-//1
+
 const form = document.createElement("form");
 inputDivas.append(form);
 
@@ -57,5 +57,29 @@ input1.placeholder = "ul list";
 const input2 = document.createElement("input");
 input2.placeholder = "ol list";
 const inputButton = document.createElement("button");
+inputButton.id = "inputButton"
 inputDivas.append(input1, input2, inputButton);
 inputButton.innerText = "Create List";
+
+
+inputButton.addEventListener('click', (event)=>{
+    event.preventDefault()
+
+
+
+    const ulCount = input1.value
+    const olCount = input2.value
+
+    for(let i = 0; i<ulCount; i++){
+        const ul = document.createElement("ul")
+        const ulTekstas = document.createTextNode('Unordered list')
+        
+    for (let j = 0; i< olCount;i++){
+        const ol = document.createElement("ol")
+        const olTekstas = document.createTextNode('Ordered list')
+        ol.appendChild(olTekstas)
+        
+    }
+    }
+    
+})

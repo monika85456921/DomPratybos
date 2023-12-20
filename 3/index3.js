@@ -38,4 +38,5 @@ button.addEventListener("click", (event) => {
     }
     table.appendChild(tableBody)
     document.body.appendChild(table)
+    table.setAttribute("border", "2")
 })

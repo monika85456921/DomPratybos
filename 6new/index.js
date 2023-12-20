@@ -44,42 +44,50 @@ button2.addEventListener("click", (event) => {
 
 ////2skaidre
 
+ 
 const inputDivas = document.createElement("div");
 mainDiv.append(inputDivas);
-inputDivas.setAttribute("class", "inputs");
-
-
-const form = document.createElement("form");
-inputDivas.append(form);
+inputDivas.setAttribute("id", "inputs");
 
 const input1 = document.createElement("input");
 input1.placeholder = "ul list";
+
 const input2 = document.createElement("input");
 input2.placeholder = "ol list";
+
 const inputButton = document.createElement("button");
-inputButton.id = "inputButton"
+inputButton.id = "inputButton";
 inputDivas.append(input1, input2, inputButton);
 inputButton.innerText = "Create List";
 
-
-inputButton.addEventListener('click', (event)=>{
-    event.preventDefault()
-
-
-
-    const ulCount = input1.value
-    const olCount = input2.value
-
-    for(let i = 0; i<ulCount; i++){
-        const ul = document.createElement("ul")
-        const ulTekstas = document.createTextNode('Unordered list')
-        
-    for (let j = 0; i< olCount;i++){
-        const ol = document.createElement("ol")
-        const olTekstas = document.createTextNode('Ordered list')
-        ol.appendChild(olTekstas)
-        
-    }
-    }
+inputButton.addEventListener('click', (event) => {
+    event.preventDefault();
     
-})
+    const existingList = mainDiv.querySelector("ul");
+    if (existingList) {
+        existingList.remove();
+    }
+
+    const ulCount = input1.value;
+    const olCount = input2.value;
+
+    const ulElement = document.createElement("ul");
+
+    for (let i = 0; i < ulCount; i++) {
+        const liElement = document.createElement("li");
+        liElement.innerText = "Unordered";
+        if (olCount > 0) {
+            const olElement = document.createElement("ol");
+            for (let j = 0; j < olCount; j++) {
+                const innerLiElement = document.createElement("li");
+                innerLiElement.innerText = "Ordered list";
+                olElement.appendChild(innerLiElement);
+            }
+            liElement.appendChild(olElement);
+        }
+        ulElement.appendChild(liElement);
+    }
+    mainDiv.appendChild(ulElement);
+});
+
+

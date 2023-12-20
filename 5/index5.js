@@ -1,8 +1,8 @@
 const form = document.querySelector('#form');
-    const table = document.querySelector('#table');
-    const insertButton = document.querySelector('#insert');
-    const editButton = document.querySelector('#edit');
-    const deleteButton = document.querySelector('#del')
+const table = document.querySelector('#table');
+const insertButton = document.querySelector('#insert');
+const editButton = document.querySelector('#edit');
+const deleteButton = document.querySelector('#del')
 
 
     const tikrintiLS = localStorage.getItem("cartList");
@@ -62,22 +62,16 @@ event.preventDefault();
 const id = document.querySelector('#id').value;
 
 localStorage.setItem("cartList", JSON.stringify(cartList))
+
+
+
+
+
+
 })
 
 
 
 
-//     function updateTable(products) {
-//         // Clear the table
-//         table.innerHTML = '<th>Product Code</th><th>Product Name</th><th>Product quantity</th>';
-
-//         // Populate the table with the updated products
-//         products.forEach(product => {
-//             const row = table.insertRow();
-//             row.insertCell(0).innerText = product.id;
-//             row.insertCell(1).innerText = product.name;
-//             row.insertCell(2).innerText = product.quantity;
-//         });
-//     }
-// });
+   
 

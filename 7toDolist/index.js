@@ -27,7 +27,20 @@ addTaskButton.addEventListener('click', (event)=>{
     
     const listTaskInput = document.querySelector("#task");
     const listSelect = document.querySelector("#priority");
+    
+    const task = taskInput.value
+    const priority = list.listSelect.value
 
+    localStorage.setItem("toDoList")
+
+    taskList.innerHTML= "";
+    toDoList.forEach((element)=>{
+        const newRow = document.createElement('tr')
+        newRow.innerHTML = `
+        <td>${element.task}</td>
+        <td>${element.priority}</td>`;
+        taskList.appendChild(newRow)
+    })
 })
 
 
